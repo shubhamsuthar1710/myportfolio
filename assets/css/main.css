@@ -1270,6 +1270,24 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+
+
+.decrypted-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: inline-block;
+  color: rgb(255, 255, 255);
+}
+
+.encrypted {
+  color: gray;
+}
+
+.revealed {
+  color: rgb(255, 255, 255);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #555;
 }

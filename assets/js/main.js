@@ -34,6 +34,48 @@
   });
 
   /**
+   * this is for animate my name in webiste 
+   * 
+   */
+  window.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("animated-text");
+  const text = el.dataset.text;
+  const speed = parseInt(el.dataset.speed || 50);
+  const maxIterations = parseInt(el.dataset.maxIterations || 10);
+  const characters = el.dataset.characters || "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+  let currentIteration = 0;
+  let revealedIndices = new Set();
+
+  const shuffleText = () => {
+    return text.split('').map((char, i) => {
+      if (char === ' ' || revealedIndices.has(i)) return char;
+      return characters[Math.floor(Math.random() * characters.length)];
+    }).join('');
+  };
+
+  const getNextIndex = () => revealedIndices.size;
+
+  const interval = setInterval(() => {
+    if (currentIteration >= maxIterations || revealedIndices.size >= text.length) {
+      el.textContent = text;
+      clearInterval(interval);
+      return;
+    }
+
+    const newIndex = getNextIndex();
+    revealedIndices.add(newIndex);
+
+    el.innerHTML = shuffleText().split('').map((char, i) =>
+      `<span class="${revealedIndices.has(i) ? 'revealed' : 'encrypted'}">${char}</span>`
+    ).join('');
+
+    currentIteration++;
+  }, speed);
+});
+
+
+  /**
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
