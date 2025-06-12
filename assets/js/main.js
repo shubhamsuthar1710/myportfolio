@@ -73,6 +73,47 @@
     currentIteration++;
   }, speed);
 });
+/**
+ * this is form contact part and send messeage 
+ */ const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const loading = form.querySelector(".loading");
+    const error = form.querySelector(".error-message");
+    const sent = form.querySelector(".sent-message");
+
+    loading.style.display = "block";
+    error.style.display = "none";
+    sent.style.display = "none";
+
+    const data = new FormData(form);
+    const response = await fetch("https://formspree.io/f/mvgrardb", {
+      method: "POST",
+      body: data,
+      headers: { "Accept": "application/json" }
+    });
+
+    loading.style.display = "none";
+
+    if (response.ok) {
+      sent.style.display = "block";
+      showPopup(); // Show popup
+      form.reset();
+    } else {
+      error.style.display = "block";
+      error.textContent = "There was a problem sending your message.";
+    }
+  });
+
+  function showPopup() {
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
 
 
   /**
