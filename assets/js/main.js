@@ -100,7 +100,7 @@
 
     if (response.ok) {
       sent.style.display = "block";
-      showPopup(); // Show the success popup
+      showPopup();
       form.reset();
     } else {
       error.style.display = "block";
@@ -113,17 +113,19 @@
   }
 
   function closePopup() {
-    // Hide the popup
     document.getElementById("popup").style.display = "none";
 
-    // Also hide the success message in the form if shown
     const sent = document.querySelector(".sent-message");
     if (sent) sent.style.display = "none";
   }
 
-
-
-
+  // ✅ Attach event listener to OK button
+  document.addEventListener("DOMContentLoaded", function () {
+    const closeBtn = document.getElementById("popup-close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closePopup);
+    }
+  });
   /**
    * Toggle mobile nav dropdowns
    */
