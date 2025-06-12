@@ -1286,3 +1286,6 @@ section,
   font-size: 1.2rem;
   color: #555;
 }
+.img-fluid{
+  border-radius: 15px;
+}
