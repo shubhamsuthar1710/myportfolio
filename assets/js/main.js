@@ -75,7 +75,8 @@
 });
 /**
  * this is form contact part and send messeage 
- */ const form = document.getElementById("contact-form");
+ */ 
+  const form = document.getElementById("contact-form");
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -99,7 +100,7 @@
 
     if (response.ok) {
       sent.style.display = "block";
-      showPopup(); // Show popup
+      showPopup(); // Show the success popup
       form.reset();
     } else {
       error.style.display = "block";
@@ -112,8 +113,15 @@
   }
 
   function closePopup() {
+    // Hide the popup
     document.getElementById("popup").style.display = "none";
+
+    // Also hide the success message in the form if shown
+    const sent = document.querySelector(".sent-message");
+    if (sent) sent.style.display = "none";
   }
+
+
 
 
   /**
